@@ -1,1 +1,89 @@
-const names={dashboard:"Dashboard",properties:"Meine Immobilien",documents:"Belege & Scans",costs:"Kostenübersicht",settlements:"Abrechnungen"};let properties=["Mehrfamilienhaus – Musterstraße 12","Wohnhaus – Gartenweg 4","Eigentumswohnung – Zentrum"];let files=[];function go(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(page).classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===page));document.getElementById("title").textContent=names[page];window.scrollTo({top:0,behavior:"smooth"})}document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.goto)));document.getElementById("year").addEventListener("change",e=>{document.getElementById("year-stat").textContent=e.target.value;document.getElementById("settlement-year").textContent=e.target.value;renderProperties()});function renderProperties(){let list=document.getElementById("property-list");list.innerHTML="";properties.forEach(name=>{let row=document.createElement("div");row.className="property";let icon=document.createElement("div");icon.className="symbol";icon.textContent="⌂";let text=document.createElement("div");let title=document.createElement("b");title.textContent=name;let meta=document.createElement("small");meta.textContent="Abrechnungsjahr "+document.getElementById("year").value+" · Demo-Objekt";text.append(title,meta);row.append(icon,text);list.append(row)});document.getElementById("count-properties").textContent=properties.length}renderProperties();document.getElementById("add-toggle").addEventListener("click",()=>{document.getElementById("property-form").classList.toggle("hidden");document.getElementById("property-name").focus()});document.getElementById("property-form").addEventListener("submit",e=>{e.preventDefault();let input=document.getElementById("property-name");if(input.value.trim()){properties.push(input.value.trim());input.value="";document.getElementById("property-form").classList.add("hidden");renderProperties()}});document.getElementById("files").addEventListener("change",e=>{files.push(...Array.from(e.target.files||[]));document.getElementById("count-documents").textContent=files.length;document.getElementById("feedback").textContent=files.length+" Datei(en) ausgewählt. Sie werden nicht auf einen Server übertragen.";let list=document.getElementById("file-list");list.innerHTML="";if(!files.length){list.textContent="Noch keine Dateien ausgewählt.";list.className="muted";return}list.className="";files.forEach(f=>{let row=document.createElement("div");row.className="fileitem";row.textContent=f.name;let meta=document.createElement("small");meta.textContent=(f.size/1024).toFixed(1)+" KB · Noch nicht ausgelesen";row.append(meta);list.append(row)});e.target.value=""});
+"use strict";
+const pageTitles={dashboard:"Dashboard",properties:"Immobilien & Mietparteien",documents:"Belege & Scans",costs:"Kosten & Verteilung",settlements:"Abrechnungen",reports:"Jahresübersicht"};
+let properties=[
+ {name:"Musterstraße 1",units:5,kind:"Mehrfamilienhaus"},
+ {name:"Hauptstraße 12",units:8,kind:"Mehrfamilienhaus"},
+ {name:"Gartenweg 5",units:5,kind:"Wohnhaus"}
+];
+let uploadedFiles=[];
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+id));
+ document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ document.querySelectorAll(".mobile-bottom button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ document.getElementById("page-title").textContent=pageTitles[id]||"Dashboard";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.goto)));
+document.getElementById("year").addEventListener("change",e=>{
+ const year=e.target.value;
+ document.getElementById("metric-year").textContent=year;
+ document.getElementById("cost-year").textContent=year;
+ document.getElementById("settlement-year").textContent=year;
+ document.querySelectorAll(".year-inline").forEach(x=>x.textContent=year);
+ renderProperties();
+});
+function renderProperties(){
+ const list=document.getElementById("property-list");
+ const tiles=document.getElementById("property-tiles");
+ list.replaceChildren();tiles.replaceChildren();
+ properties.forEach((p,i)=>{
+  const tile=document.createElement("div");tile.className="property-tile";
+  const photo=document.createElement("div");photo.className="property-photo";
+  const content=document.createElement("div");content.className="property-tile-content";
+  const title=document.createElement("b");title.textContent=p.name;
+  const units=document.createElement("small");units.textContent=p.units+" Wohneinheiten";
+  const active=document.createElement("span");active.className="active-tag";active.textContent="Demo-Objekt";
+  content.append(title,units,active);tile.append(photo,content);tiles.append(tile);
+  const row=document.createElement("article");row.className="property-row";
+  const pic=document.createElement("div");pic.className="property-photo";
+  const info=document.createElement("div");
+  const h=document.createElement("h3");h.textContent=p.name;
+  const desc=document.createElement("p");desc.textContent=p.kind+" · "+p.units+" Wohneinheiten";
+  const meta=document.createElement("small");meta.textContent="Abrechnungsjahr "+document.getElementById("year").value+" · Demo";
+  info.append(h,desc,meta);row.append(pic,info);list.append(row);
+ });
+ document.getElementById("metric-properties").textContent=properties.length;
+ document.getElementById("report-properties").textContent=properties.length;
+}
+renderProperties();
+const form=document.getElementById("property-form");
+document.getElementById("add-property").addEventListener("click",()=>{form.classList.toggle("hidden");if(!form.classList.contains("hidden"))document.getElementById("property-name").focus()});
+form.addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=document.getElementById("property-name").value.trim();
+ const units=Math.max(1,Number(document.getElementById("units").value)||1);
+ if(!name)return;
+ properties.push({name,units,kind:"Immobilie"});
+ form.reset();document.getElementById("units").value="4";form.classList.add("hidden");renderProperties();
+});
+document.getElementById("file-input").addEventListener("change",e=>{
+ const files=Array.from(e.target.files||[]);
+ if(!files.length)return;
+ uploadedFiles.push(...files);
+ const msg=document.getElementById("upload-feedback");
+ msg.textContent=files.length+" Datei(en) ausgewählt. Dateien werden in dieser Demo nicht an einen Server übertragen.";
+ renderDocuments();e.target.value="";
+});
+function renderDocuments(){
+ const list=document.getElementById("document-list");list.replaceChildren();
+ if(!uploadedFiles.length){list.className="empty-state";list.textContent="Noch keine eigenen Dateien ausgewählt. Die vier Beispielbelege auf dem Dashboard sind Demo-Daten.";return}
+ list.className="";
+ uploadedFiles.forEach(file=>{
+  const row=document.createElement("div");row.className="document-row";
+  const icon=document.createElement("span");icon.className="receipt-thumb";icon.textContent=file.type==="application/pdf"?"PDF":"IMG";
+  const details=document.createElement("div");details.style.minWidth="0";
+  const name=document.createElement("b");name.textContent=file.name;
+  const meta=document.createElement("small");meta.textContent=(file.size/1024).toFixed(1)+" KB · Noch nicht automatisch ausgelesen";
+  details.append(name,meta);row.append(icon,details);list.append(row);
+ });
+ document.getElementById("metric-documents").textContent=24+uploadedFiles.length;
+ document.getElementById("report-documents").textContent=24+uploadedFiles.length;
+}
+document.getElementById("create-settlement").addEventListener("click",()=>{
+ document.getElementById("settlement-feedback").textContent="Ein Demo-Entwurf ist bereits geöffnet. Echte Berechnungen sind noch nicht angebunden.";
+});
+document.getElementById("print-settlement").addEventListener("click",()=>{
+ document.getElementById("settlement-feedback").textContent="Im Druckdialog kannst du „Als PDF sichern“ auswählen. Der Inhalt ist ein Demo-Entwurf.";
+ window.print();
+});

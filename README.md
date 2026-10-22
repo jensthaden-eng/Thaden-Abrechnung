@@ -1,30 +1,26 @@
-# Thaden BKA – Thaden Betriebskosten Abrechnung
+# Thaden BKA – GitHub Pages Prototyp
 
-Einsteiger-Grundgerüst für eine responsive Web-App zur Vorbereitung deutscher Betriebskostenabrechnungen.
+Responsive statische Demo für Computer und Smartphone. Anthrazit-weißes Design mit orangefarbenen Akzenten mit Bereichen für Dashboard, Immobilien & Mietparteien, Belege & Scans, Kosten & Verteilung, Abrechnungen sowie Jahresübersicht.
 
-## Enthalten
-- Dashboard für Immobilien, Belege und Abrechnungsstatus
-- Immobilien-/Wohnungsübersicht mit Beispieldaten
-- Beleg-Upload für PDF/JPG/PNG (aktuell lokale Browser-Vorschau, noch keine dauerhafte Speicherung)
-- Formular zur manuellen Prüfung erkannter Belegdaten
-- Beispielrechnung für Kostenverteilung nach Wohnfläche
-- CSV-Export der Beispielkosten
+## Hochladen ohne Terminal
 
-## Lokal starten
-1. Node.js (LTS) installieren: https://nodejs.org/
-2. Dieses Projekt entpacken.
-3. Im Projektordner ein Terminal öffnen und ausführen:
-   ```bash
-   npm install
-   npm run dev
-   ```
-4. Die angezeigte lokale Adresse im Browser öffnen.
+1. ZIP auf deinem Gerät entpacken.
+2. Im GitHub-Repository `thaden-bka` auf **Add file → Upload files** gehen.
+3. `index.html`, `README.md` und den gesamten Ordner `assets` hochladen (nicht nur die ZIP-Datei).
+4. Änderungen mit **Commit changes** speichern.
+5. Unter **Settings → Pages**: Source **Deploy from a branch**, Branch `main`, Ordner `/(root)`, **Save**.
+6. Einige Minuten warten und die angezeigte Pages-Adresse öffnen.
 
-## Auf GitHub hochladen
-1. GitHub öffnen und ein neues Repository namens `thaden-bka` anlegen.
-2. README, `.gitignore` und `package.json` können initialisiert werden; wenn du die ZIP hochlädst, erstelle das Repository am besten leer.
-3. Entpacke die ZIP auf deinem PC.
-4. Im Repository wähle **Add file → Upload files**, ziehe die entpackten Dateien und Ordner hinein und klicke **Commit changes**.
+## Funktionen dieser Demo
 
-## Wichtig
-Dies ist ein Prototyp, noch keine produktionsreife Abrechnungssoftware. Dateien und Daten werden nicht dauerhaft gespeichert; es gibt noch keine Anmeldung, Datenbank, echte OCR/KI-Integration oder geprüfte PDF-Abrechnung. Verwende vorerst keine echten Mieterdaten oder vertraulichen Belege. Vor produktivem Einsatz müssen Datenschutz, Sicherheit, Betriebskostenrecht, Umlageschlüssel und Rechenlogik fachlich geprüft werden.
+- Responsive Dashboard und Navigation
+- Jahr auswählen
+- Beispielobjekte ansehen und neue Demo-Objekte hinzufügen
+- PDF- und Foto-Dateien im Browser auswählen und auflisten
+- Beispielhafte Kostenarten und Verteilerschlüssel anzeigen
+- Druckansicht für einen Demo-Abrechnungsentwurf (Druckdialog kann als PDF speichern)
+- Jahresübersicht mit Beispieldaten
+
+## Grenzen und Datenschutz
+
+Dies ist ein Prototyp mit Beispieldaten. Eingaben und ausgewählte Dateien werden nicht dauerhaft gespeichert; Dateien werden nicht an einen Server übertragen und nicht automatisch per KI ausgelesen. Kosten, Verteilerschlüssel und Abrechnungen sind nicht rechtlich geprüft. Bitte keine echten Mieterdaten oder Rechnungen verwenden.

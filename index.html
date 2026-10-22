@@ -1,12 +1,116 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#142c26"><title>Thaden BKA – Betriebskostenabrechnung</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><div class="shell">
-<aside class="sidebar"><div class="brand"><div class="logo">⌂</div><div><b>Thaden BKA</b><small>BETRIEBSKOSTENABRECHNUNG</small></div></div><p class="navlabel">VERWALTUNG</p><nav>
-<button class="nav active" data-page="dashboard">▦　Dashboard</button><button class="nav" data-page="properties">⌂　Meine Immobilien</button><button class="nav" data-page="documents">▤　Belege &amp; Scans</button><button class="nav" data-page="costs">▥　Kostenübersicht</button><button class="nav" data-page="settlements">✓　Abrechnungen</button></nav><p class="side-note">Dein digitaler Helfer für die jährliche Abrechnung.</p></aside>
-<main><header><div><p class="eyebrow">THADEN BKA / VERWALTUNG</p><h1 id="title">Dashboard</h1></div><label class="year">Abrechnungsjahr <select id="year"><option>2024</option><option selected>2025</option><option>2026</option></select></label></header>
-<section class="page active" id="dashboard"><div class="hero"><p class="kicker">WILLKOMMEN BEI THADEN BKA</p><h2>Deine Betriebskosten.<br>Einfacher verwalten.</h2><p>Immobilien organisieren, Belege digital erfassen und die jährliche Betriebskostenabrechnung vorbereiten.</p><button class="primary" data-goto="documents">Belege verwalten →</button></div><div class="stats"><article><span>⌂</span><p>Meine Immobilien</p><strong id="count-properties">3</strong></article><article><span>▤</span><p>Belege ausgewählt</p><strong id="count-documents">0</strong></article><article><span>✓</span><p>Abrechnungsjahr</p><strong id="year-stat">2025</strong></article></div><div class="panel"><h3>Deine nächsten Schritte</h3><div class="todo">①　Immobilien und Mietparteien erfassen</div><div class="todo">②　Rechnungen als PDF oder Foto auswählen</div><div class="todo">③　Kosten und Verteilerschlüssel kontrollieren</div><div class="todo">④　Betriebskostenabrechnung vorbereiten</div></div></section>
-<section class="page" id="properties"><div class="heading"><div><h2>Meine Immobilien</h2><p>Verwalte deine Objekte an einem Ort.</p></div><button class="primary" id="add-toggle">+ Objekt hinzufügen</button></div><form id="property-form" class="panel hidden"><label for="property-name">Objektname oder Adresse</label><input id="property-name" placeholder="z. B. Wohnhaus, Lindenstraße 8" required><button class="primary">Speichern</button></form><div id="property-list"></div></section>
-<section class="page" id="documents"><div class="heading"><div><h2>Belege &amp; Scans</h2><p>Wähle PDF-Rechnungen oder Fotos von deinem Gerät aus.</p></div></div><div class="upload"><div class="uploadicon">↑</div><h3>Beleg auswählen</h3><p>Wähle eine PDF oder ein Foto aus. In dieser Demo wird die Datei nur lokal aufgelistet; sie wird nicht hochgeladen oder automatisch ausgelesen.</p><label class="primary filebutton" for="files">PDF oder Foto auswählen</label><input id="files" type="file" accept="application/pdf,image/*" multiple><div id="feedback"></div></div><div class="panel"><h3>Ausgewählte Dateien</h3><div id="file-list" class="muted">Noch keine Dateien ausgewählt.</div></div></section>
-<section class="page" id="costs"><div class="heading"><div><h2>Kostenübersicht</h2><p>Beispielwerte für das ausgewählte Abrechnungsjahr.</p></div></div><div class="panel costs"><div>Wasser und Abwasser <b>2.450,00 €</b></div><div>Heizung <b>6.200,00 €</b></div><div>Müllentsorgung <b>1.150,00 €</b></div><div>Gebäudeversicherung <b>1.800,00 €</b></div><div>Sonstige Betriebskosten <b>2.850,00 €</b></div><div class="total">Beispielsumme <b>14.450,00 €</b></div><p class="muted">Musterwerte ohne rechtliche oder buchhalterische Prüfung.</p></div></section>
-<section class="page" id="settlements"><div class="heading"><div><h2>Abrechnungen</h2><p>Hier entsteht später die jährliche Abrechnung je Mietpartei.</p></div></div><div class="panel"><h3>Betriebskostenabrechnung <span id="settlement-year">2025</span></h3><p class="muted">Demo-Entwurf · noch nicht geprüft</p><div class="todo">①　Kosten erfassen und Belege zuordnen</div><div class="todo">②　Verteilerschlüssel und Mietzeiträume prüfen</div><div class="todo">③　Vorauszahlungen berücksichtigen</div><div class="todo">④　Abrechnung prüfen und PDF erzeugen</div><p class="muted">Diese Demo erstellt noch keine rechtlich verwendbare Abrechnung.</p></div></section>
-<footer>Thaden BKA · Prototyp · Bitte nur mit Beispieldaten testen.</footer></main></div><script src="assets/app.js"></script></body></html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12382e">
+  <meta name="description" content="Thaden BKA – Prototyp für die digitale Betriebskostenabrechnung">
+  <title>Thaden BKA – Betriebskostenabrechnung</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Thaden BKA Dashboard">
+      <span class="brand-mark">⌂</span>
+      <span><strong>Thaden BKA</strong><small>BETRIEBSKOSTENABRECHNUNG</small></span>
+    </a>
+    <div class="nav-label">VERWALTUNG</div>
+    <nav id="nav">
+      <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+      <button class="nav-item" data-page="properties"><span class="nav-icon">⌂</span>Immobilien &amp; Mieter</button>
+      <button class="nav-item" data-page="documents"><span class="nav-icon">▤</span>Belege &amp; Scans</button>
+      <button class="nav-item" data-page="costs"><span class="nav-icon">▥</span>Kosten &amp; Verteilung</button>
+      <button class="nav-item" data-page="settlements"><span class="nav-icon">✓</span>Abrechnungen</button>
+      <button class="nav-item" data-page="reports"><span class="nav-icon">▥</span>Jahresübersicht</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="prototype-pill"><span></span> Prototyp mit Beispieldaten</div>
+      <p>Weniger Aufwand. Mehr Übersicht.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark">⌂</span><strong>Thaden BKA</strong></div>
+      <div class="page-heading"><p>THADEN BKA / VERWALTUNG</p><h1 id="page-title">Dashboard</h1></div>
+      <label class="year-picker">Abrechnungsjahr
+        <select id="year"><option>2024</option><option selected>2025</option><option>2026</option></select>
+      </label>
+    </header>
+
+    <section class="page active" id="page-dashboard">
+      <div class="welcome">
+        <div class="welcome-copy"><span class="eyebrow">WILLKOMMEN BEI THADEN BKA</span><h2>Deine Betriebskosten.<br>Einfacher verwalten.</h2><p>Immobilien organisieren, Belege erfassen und die jährliche Betriebskostenabrechnung vorbereiten.</p><button class="btn btn-primary" data-goto="documents">Beleg hinzufügen <span>→</span></button></div>
+        <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="building building-back"></div><div class="building building-front"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ground"></div></div>
+      </div>
+
+      <div class="metrics">
+        <button class="metric metric-green" data-goto="properties"><span class="metric-icon">⌂</span><span class="metric-label">Immobilien</span><strong id="metric-properties">3</strong><small>Objekte verwalten <b>→</b></small></button>
+        <button class="metric metric-blue" data-goto="documents"><span class="metric-icon">▤</span><span class="metric-label">Belege erfasst</span><strong id="metric-documents">24</strong><small>Dateien ansehen <b>→</b></small></button>
+        <button class="metric metric-gold" data-goto="costs"><span class="metric-icon">◉</span><span class="metric-label">Gesamtkosten</span><strong>12.480 €</strong><small>im Jahr <span id="metric-year">2025</span></small></button>
+        <button class="metric metric-rose" data-goto="properties"><span class="metric-icon">♙</span><span class="metric-label">Wohneinheiten</span><strong>18</strong><small>über alle Objekte</small></button>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="card cost-chart-card">
+          <div class="card-heading"><div><h3>Kosten nach Kategorien</h3><p>Beispielwerte für <span class="year-inline">2025</span></p></div><button class="text-button" data-goto="costs">Details →</button></div>
+          <div class="chart-layout"><div class="donut"><div><strong>12.480 €</strong><span>Gesamtkosten</span></div></div><div class="legend">
+            <div><i class="dot red"></i><span>Heizung</span><b>4.230 €</b></div><div><i class="dot blue"></i><span>Wasser / Abwasser</span><b>2.180 €</b></div><div><i class="dot yellow"></i><span>Hausstrom</span><b>1.240 €</b></div><div><i class="dot green"></i><span>Müllabfuhr</span><b>960 €</b></div><div><i class="dot purple"></i><span>Gebäudereinigung</span><b>1.480 €</b></div><div><i class="dot gray"></i><span>Sonstiges</span><b>2.390 €</b></div>
+          </div></div>
+        </article>
+        <article class="card recent-card">
+          <div class="card-heading"><div><h3>Letzte Belege</h3><p>Zuletzt erfasste Demo-Belege</p></div><button class="text-button" data-goto="documents">Alle anzeigen →</button></div>
+          <div class="recent-list" id="recent-list">
+            <div class="recent-row"><span class="receipt-thumb">PDF</span><div class="recent-info"><b>Rechnung Heizung</b><small>12.03.2025</small></div><div class="recent-amount"><b>1.280,50 €</b><span class="tag tag-blue">Heizung</span></div></div>
+            <div class="recent-row"><span class="receipt-thumb">PDF</span><div class="recent-info"><b>Wasserrechnung</b><small>28.02.2025</small></div><div class="recent-amount"><b>320,40 €</b><span class="tag tag-blue">Wasser</span></div></div>
+            <div class="recent-row"><span class="receipt-thumb">PDF</span><div class="recent-info"><b>Hausstrom</b><small>15.02.2025</small></div><div class="recent-amount"><b>185,60 €</b><span class="tag tag-gold">Strom</span></div></div>
+            <div class="recent-row"><span class="receipt-thumb">PDF</span><div class="recent-info"><b>Müllabfuhr</b><small>03.02.2025</small></div><div class="recent-amount"><b>240,00 €</b><span class="tag tag-green">Müll</span></div></div>
+          </div>
+        </article>
+        <article class="card properties-card">
+          <div class="card-heading"><div><h3>Meine Immobilien</h3><p>Beispielobjekte</p></div><button class="text-button" data-goto="properties">Alle anzeigen →</button></div>
+          <div class="property-tiles" id="property-tiles"></div>
+        </article>
+        <article class="card quick-card">
+          <div class="card-heading"><div><h3>Schnellaktionen</h3><p>Direkt zum nächsten Schritt</p></div></div>
+          <div class="quick-actions"><button data-goto="documents"><span class="quick-icon green">＋</span><span><b>Beleg auswählen</b><small>PDF oder Foto</small></span></button><button data-goto="properties"><span class="quick-icon blue">⌂</span><span><b>Neue Immobilie</b><small>Objekt anlegen</small></span></button><button data-goto="settlements"><span class="quick-icon gold">▦</span><span><b>Abrechnung prüfen</b><small>Für <span class="year-inline">2025</span></small></span></button><button data-goto="reports"><span class="quick-icon gray">▤</span><span><b>Jahresübersicht</b><small>Auswertung ansehen</small></span></button></div>
+        </article>
+      </div>
+      <p class="disclaimer">Demo-Oberfläche mit Beispieldaten. Noch keine rechtlich geprüfte Abrechnung.</p>
+    </section>
+
+    <section class="page" id="page-properties">
+      <div class="section-title"><div><h2>Immobilien &amp; Mietparteien</h2><p>Objekte und beispielhafte Wohneinheiten zentral verwalten.</p></div><button class="btn btn-primary" id="add-property">＋ Objekt hinzufügen</button></div>
+      <form class="card form-card hidden" id="property-form"><label for="property-name">Objektname oder Adresse</label><input id="property-name" required placeholder="z. B. Wohnhaus, Lindenstraße 8"><label for="units">Anzahl Wohneinheiten</label><input id="units" type="number" min="1" value="4" required><button class="btn btn-primary">Objekt speichern</button></form>
+      <div class="property-list" id="property-list"></div>
+    </section>
+
+    <section class="page" id="page-documents">
+      <div class="section-title"><div><h2>Belege &amp; Scans</h2><p>PDF-Rechnungen und Fotos auswählen und für die Erkennung vorbereiten.</p></div></div>
+      <div class="upload-card card"><div class="upload-symbol">↑</div><h3>Belege hinzufügen</h3><p>Wähle Rechnungen als PDF oder Fotos von deinem Gerät aus. In dieser Demo werden Dateien nur im Browser aufgelistet und nicht an einen Server übertragen.</p><label class="btn btn-primary" for="file-input">PDF oder Foto auswählen</label><input id="file-input" type="file" accept="application/pdf,image/*" multiple><div id="upload-feedback" aria-live="polite"></div></div>
+      <article class="card"><div class="card-heading"><div><h3>Belegliste</h3><p>Demo-Belege und lokal ausgewählte Dateien</p></div><span class="status-pill">Prototyp</span></div><div id="document-list" class="empty-state">Noch keine eigenen Dateien ausgewählt. Die vier Beispielbelege auf dem Dashboard sind Demo-Daten.</div></article>
+    </section>
+
+    <section class="page" id="page-costs">
+      <div class="section-title"><div><h2>Kosten &amp; Verteilung</h2><p>Beispielkosten und Verteilerschlüssel ansehen.</p></div></div>
+      <article class="card"><div class="card-heading"><div><h3>Kostenarten für <span id="cost-year">2025</span></h3><p>Die Beträge dienen nur der Gestaltung des Prototyps.</p></div></div><div class="cost-table"><div class="cost-head"><span>Kostenart</span><span>Gesamtkosten</span><span>Verteilerschlüssel (Demo)</span></div>
+        <div><span>Heizung</span><b>4.230,00 €</b><span>Verbrauch / Heizkostenregeln</span></div><div><span>Wasser / Abwasser</span><b>2.180,00 €</b><span>Verbrauch oder Wohnfläche</span></div><div><span>Hausstrom</span><b>1.240,00 €</b><span>Wohnfläche</span></div><div><span>Müllabfuhr</span><b>960,00 €</b><span>Personen oder Wohnfläche</span></div><div><span>Gebäudereinigung</span><b>1.480,00 €</b><span>Wohnfläche</span></div><div><span>Sonstiges</span><b>2.390,00 €</b><span>Nach Vertrag und Kostenart</span></div><div class="cost-total"><span>Beispielsumme</span><b>12.480,00 €</b><span>Vor Verwendung prüfen</span></div></div><p class="disclaimer">Verteilerschlüssel sind Beispiele. Die Zulässigkeit richtet sich unter anderem nach Mietvertrag und gesetzlichen Vorgaben.</p></article>
+    </section>
+
+    <section class="page" id="page-settlements">
+      <div class="section-title"><div><h2>Betriebskostenabrechnungen</h2><p>Abrechnung vorbereiten, kontrollieren und später als PDF exportieren.</p></div><button class="btn btn-primary" id="create-settlement">＋ Entwurf anlegen</button></div>
+      <article class="card"><div class="settlement-banner"><span class="settlement-icon">✓</span><div><h3>Abrechnung <span id="settlement-year">2025</span></h3><p>Beispielentwurf · noch nicht rechtlich geprüft</p></div><span class="status-pill">Entwurf</span></div><div class="check-row"><span>01</span><div><b>Belege und Gesamtkosten prüfen</b><small>Rechnungen, Leistungszeitraum und mögliche Doppelungen kontrollieren.</small></div></div><div class="check-row"><span>02</span><div><b>Mietparteien und Verteilerschlüssel prüfen</b><small>Wohnfläche, Mietzeitraum und relevante Verbrauchswerte hinterlegen.</small></div></div><div class="check-row"><span>03</span><div><b>Vorauszahlungen berücksichtigen</b><small>Vorauszahlungen und zeitanteilige Zuordnungen abgleichen.</small></div></div><div class="check-row"><span>04</span><div><b>Abrechnung kontrollieren</b><small>Erst nach Prüfung kann ein nutzbarer Abrechnungsentwurf erstellt werden.</small></div></div><div class="export-row"><button class="btn btn-secondary" id="print-settlement">Druckansicht / PDF testen</button><span id="settlement-feedback" class="muted"></span></div></article>
+    </section>
+
+    <section class="page" id="page-reports">
+      <div class="section-title"><div><h2>Jahresübersicht &amp; Auswertungen</h2><p>Demo-Auswertung für das ausgewählte Abrechnungsjahr.</p></div></div>
+      <div class="metrics report-metrics"><div class="metric metric-green"><span class="metric-label">Immobilien</span><strong id="report-properties">3</strong><small>Demo-Objekte</small></div><div class="metric metric-blue"><span class="metric-label">Belege</span><strong id="report-documents">24</strong><small>Beispieldaten</small></div><div class="metric metric-gold"><span class="metric-label">Gesamtkosten</span><strong>12.480 €</strong><small>Beispielsumme</small></div></div>
+      <article class="card"><h3>Kostenverteilung im Überblick</h3><div class="report-bar"><span>Heizung</span><div><i style="width:100%;background:#f05261"></i></div><b>4.230 €</b></div><div class="report-bar"><span>Wasser / Abwasser</span><div><i style="width:52%;background:#368bf2"></i></div><b>2.180 €</b></div><div class="report-bar"><span>Hausstrom</span><div><i style="width:29%;background:#f5bd27"></i></div><b>1.240 €</b></div><div class="report-bar"><span>Müllabfuhr</span><div><i style="width:23%;background:#23a875"></i></div><b>960 €</b></div><div class="report-bar"><span>Gebäudereinigung</span><div><i style="width:35%;background:#9560ed"></i></div><b>1.480 €</b></div><div class="report-bar"><span>Sonstiges</span><div><i style="width:57%;background:#8a98a3"></i></div><b>2.390 €</b></div><p class="disclaimer">Alle Zahlen sind Platzhalter. Sie werden nicht aus echten Belegen berechnet.</p></article>
+    </section>
+    <footer>Thaden BKA · Prototyp mit Beispieldaten · Keine rechtlich geprüfte Abrechnung</footer>
+  </main>
+</div>
+<div class="mobile-bottom" id="mobile-bottom"><button data-page="dashboard" class="active"><span>▦</span>Start</button><button data-page="properties"><span>⌂</span>Objekte</button><button data-page="documents"><span>▤</span>Belege</button><button data-page="costs"><span>▥</span>Kosten</button><button data-page="settlements"><span>✓</span>Abrechnung</button></div>
+<script src="assets/app.js"></script>
+</body></html>
