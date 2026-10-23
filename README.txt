@@ -1,13 +1,13 @@
-# Thaden BKA – Einzeldatei für GitHub Pages
+# Thaden BKA – Startbildschirm final
 
-Diese Version enthält HTML, CSS, JavaScript und das Logo vollständig in einer einzigen `index.html`.
-Dadurch müssen keine `assets`-Ordner separat hochgeladen werden.
+Diese GitHub-Pages-Version enthält die gesamte App in einer einzigen `index.html`.
+Das freigegebene Startseitenmotiv ist eingebettet; der orangefarbene Button-Bereich öffnet das Dashboard.
 
-## Installation über GitHub im Browser
-1. Repository `thaden-bka` öffnen.
-2. `index.html` öffnen und auf das Stift-Symbol (Edit) tippen.
-3. Den gesamten bisherigen Inhalt markieren und durch den Inhalt der neuen `index.html` ersetzen; alternativ die Datei über **Add file → Upload files** hochladen und die alte `index.html` ersetzen.
-4. Änderungen mit **Commit changes** speichern.
-5. GitHub Pages neu laden. Falls die alte Version erscheint, Browserseite aktualisieren oder kurz warten.
+## Upload über GitHub am iPhone
+1. ZIP-Datei in der App „Dateien“ herunterladen und entpacken.
+2. Im GitHub-Repository `thaden-bka` die Datei `index.html` öffnen.
+3. Über das Stift-Symbol bearbeiten oder über **Add file → Upload files** die neue Datei hochladen.
+4. Die Änderung mit **Commit changes** speichern.
+5. GitHub Pages neu laden. Falls noch die alte Version erscheint, einige Minuten warten und erneut laden.
 
-Wichtig: Diese Datei ist ein Prototyp mit Beispieldaten. Automatische OCR und rechtlich geprüfte Abrechnungsberechnung sind noch nicht enthalten.
+Die App ist weiterhin ein Prototyp mit Beispieldaten. Automatische Belegerkennung und rechtlich geprüfte Abrechnungsberechnung sind noch nicht enthalten.
