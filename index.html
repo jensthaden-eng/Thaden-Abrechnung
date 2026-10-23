@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<div class="splash-screen" id="splash-screen" role="dialog" aria-label="Thaden BKA Startbildschirm">
+  <div class="splash-glow"></div>
+  <button class="splash-logo-button" id="splash-start" aria-label="Thaden BKA öffnen">
+    <img class="splash-logo-image" src="assets/thaden-bka-logo.png" alt="Thaden BKA – Betriebskostenabrechnung. Einfach. Digital. Übersichtlich.">
+    <span class="splash-tap-hint">Zum Öffnen tippen</span>
+  </button>
+  <div class="splash-footer">IMMOBILIENVERWALTUNG · EINFACH ÜBERSICHTLICH</div>
+</div>
+
 <div class="app">
   <aside class="sidebar">
     <a class="brand" href="#" aria-label="Thaden BKA Dashboard">
@@ -41,7 +50,7 @@
 
     <section class="page active" id="page-dashboard">
       <div class="welcome">
-        <div class="welcome-copy"><span class="eyebrow">WILLKOMMEN BEI THADEN BKA</span><h2>Deine Betriebskosten.<br>Einfacher verwalten.</h2><p>Immobilien organisieren, Belege erfassen und die jährliche Betriebskostenabrechnung vorbereiten.</p><button class="btn btn-primary" data-goto="documents">Beleg hinzufügen <span>→</span></button></div>
+        <div class="welcome-copy"><span class="eyebrow">WILLKOMMEN BEI THADEN BKA</span><h2>Deine Immobilien.<br>Deine Abrechnung.<br>Alles im Überblick.</h2><p>Verwalte Objekte, sammle Belege und bereite deine jährliche Betriebskostenabrechnung Schritt für Schritt vor.</p><button class="btn btn-primary" data-goto="properties">Mit Immobilien starten <span>→</span></button></div>
         <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="building building-back"></div><div class="building building-front"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ground"></div></div>
       </div>
 
@@ -52,6 +61,15 @@
         <button class="metric metric-rose" data-goto="properties"><span class="metric-icon">♙</span><span class="metric-label">Wohneinheiten</span><strong>18</strong><small>über alle Objekte</small></button>
       </div>
 
+      <article class="card start-here-card">
+        <div class="card-heading"><div><h3>Deine nächsten Schritte</h3><p>So bereitest du die Abrechnung vor</p></div><span class="status-pill">4 Schritte</span></div>
+        <div class="start-steps">
+          <button data-goto="properties"><span class="step-number">01</span><span class="step-copy"><b>Immobilien und Mietparteien erfassen</b><small>Objekte, Wohnungen und Mietdaten organisieren</small></span><span class="step-arrow">→</span></button>
+          <button data-goto="documents"><span class="step-number">02</span><span class="step-copy"><b>Belege sammeln</b><small>Rechnungen als PDF oder Foto auswählen</small></span><span class="step-arrow">→</span></button>
+          <button data-goto="costs"><span class="step-number">03</span><span class="step-copy"><b>Kosten zuordnen</b><small>Kostenarten und Verteilerschlüssel kontrollieren</small></span><span class="step-arrow">→</span></button>
+          <button data-goto="settlements"><span class="step-number">04</span><span class="step-copy"><b>Abrechnung vorbereiten</b><small>Angaben prüfen und Entwurf ansehen</small></span><span class="step-arrow">→</span></button>
+        </div>
+      </article>
       <div class="dashboard-grid">
         <article class="card cost-chart-card">
           <div class="card-heading"><div><h3>Kosten nach Kategorien</h3><p>Beispielwerte für <span class="year-inline">2025</span></p></div><button class="text-button" data-goto="costs">Details →</button></div>
@@ -77,7 +95,7 @@
           <div class="quick-actions"><button data-goto="documents"><span class="quick-icon green">＋</span><span><b>Beleg auswählen</b><small>PDF oder Foto</small></span></button><button data-goto="properties"><span class="quick-icon blue">⌂</span><span><b>Neue Immobilie</b><small>Objekt anlegen</small></span></button><button data-goto="settlements"><span class="quick-icon gold">▦</span><span><b>Abrechnung prüfen</b><small>Für <span class="year-inline">2025</span></small></span></button><button data-goto="reports"><span class="quick-icon gray">▤</span><span><b>Jahresübersicht</b><small>Auswertung ansehen</small></span></button></div>
         </article>
       </div>
-      <p class="disclaimer">Demo-Oberfläche mit Beispieldaten. Noch keine rechtlich geprüfte Abrechnung.</p>
+      <p class="disclaimer">Hinweis: Dies ist ein Prototyp mit Beispieldaten. Noch werden keine Belege automatisch ausgelesen und keine rechtlich geprüften Abrechnungen erstellt.</p>
     </section>
 
     <section class="page" id="page-properties">

@@ -87,3 +87,22 @@ document.getElementById("print-settlement").addEventListener("click",()=>{
  document.getElementById("settlement-feedback").textContent="Im Druckdialog kannst du „Als PDF sichern“ auswählen. Der Inhalt ist ein Demo-Entwurf.";
  window.print();
 });
+
+
+// Startbildschirm: Logo antippen, Push-Animation abspielen und Dashboard öffnen.
+(function(){
+ const splash=document.getElementById("splash-screen");
+ const startButton=document.getElementById("splash-start");
+ if(!splash||!startButton)return;
+ document.body.classList.add("splash-open");
+ startButton.addEventListener("click",function(){
+   if(startButton.classList.contains("pushed"))return;
+   startButton.classList.add("pushed");
+   splash.classList.add("leaving");
+   window.setTimeout(function(){
+     splash.remove();
+     document.body.classList.remove("splash-open");
+     if(typeof showPage==="function")showPage("dashboard");
+   },430);
+ });
+})();

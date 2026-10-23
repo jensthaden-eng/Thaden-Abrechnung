@@ -1,6 +1,6 @@
 # Thaden BKA – GitHub Pages Prototyp
 
-Responsive statische Demo für Computer und Smartphone. Anthrazit-weißes Design mit orangefarbenen Akzenten mit Bereichen für Dashboard, Immobilien & Mietparteien, Belege & Scans, Kosten & Verteilung, Abrechnungen sowie Jahresübersicht.
+Responsive statische Demo für Computer und Smartphone. Die Startseite enthält ein Dashboard, Kennzahlen und einen vierstufigen Arbeitsablauf. Anthrazit-weißes Design mit orangefarbenen Akzenten mit Bereichen für Dashboard, Immobilien & Mietparteien, Belege & Scans, Kosten & Verteilung, Abrechnungen sowie Jahresübersicht.
 
 ## Hochladen ohne Terminal
 
@@ -24,3 +24,7 @@ Responsive statische Demo für Computer und Smartphone. Anthrazit-weißes Design
 ## Grenzen und Datenschutz
 
 Dies ist ein Prototyp mit Beispieldaten. Eingaben und ausgewählte Dateien werden nicht dauerhaft gespeichert; Dateien werden nicht an einen Server übertragen und nicht automatisch per KI ausgelesen. Kosten, Verteilerschlüssel und Abrechnungen sind nicht rechtlich geprüft. Bitte keine echten Mieterdaten oder Rechnungen verwenden.
+
+
+## Logo-Startbildschirm
+Beim Öffnen erscheint das reduzierte Thaden-BKA-Markenlogo auf Anthrazit. Tippe auf das Logo, um den Push-Effekt auszulösen und das Dashboard zu öffnen. Das Logo liegt unter `assets/thaden-bka-logo.png`.
